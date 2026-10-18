@@ -5,9 +5,9 @@ set(CMAKE_CXX_STANDARD 11)
 
 # Перечисляем все файлы реализации проекта для сборки
 add_executable(ControlModels 
-    main.cpp 
-    InputSignal.cpp
-    Model1_9.cpp
-    Model2_3.cpp
-    Model3_7.cpp
+    src/main.cpp 
+    src/InputSignal.cpp
+    src/Model1_9.cpp
+    src/Model2_3.cpp
+    src/Model3_7.cpp
 )
