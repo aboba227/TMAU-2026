@@ -1,16 +1,22 @@
 #include "Model1_9.h"
 
-Model1_9::Model1_9(double a1, double a2, double a3, double b1) 
-    : a1(a1), a2(a2), a3(a3), b1(b1) {}
+Model1_9::Model1_9(double a1_val, double a2_val, double a3_val, double b1_val) 
+    : a1(a1_val), a2(a2_val), a3(a3_val), b1(b1_val) {}
 
 double Model1_9::calculateNext(double u) {
-    double y_next = a1 * y_curr + a2 * y_prev1 + a3 * y_prev2 + b1 * u;
+    double current_y = getY();
+    double y_next = a1 * current_y + a2 * y_prev1 + a3 * y_prev2 + b1 * u;
+
+    // Разделяем присваивания на отдельные строки по требованию анализатора
     y_prev2 = y_prev1;
-    y_prev1 = y_curr;
-    y_curr = y_next;
-    return y_curr;
+    y_prev1 = current_y;
+    setY(y_next);
+
+    return y_next;
 }
 
 void Model1_9::reset() {
-    y_curr = y_prev1 = y_prev2 = 0.0;
+    setY(0.0);
+    y_prev1 = 0.0;
+    y_prev2 = 0.0;
 }

@@ -1,14 +1,18 @@
 #include "Model3_7.h"
 #include <cmath>
 
-Model3_7::Model3_7(double a, double b, double dt) : a(a), b(b), dt(dt) {}
+Model3_7::Model3_7(double a_val, double b_val, double dt_val) 
+    : a(a_val), b(b_val), dt(dt_val) {}
 
 double Model3_7::calculateNext(double u) {
-    double y_next = y_curr + dt * (-std::exp(a) * y_curr + b * u);
-    y_curr = y_next;
-    return y_curr;
+    double current_y = getY();
+    double y_next = current_y + dt * (-std::exp(a) * current_y + b * u);
+
+    setY(y_next);
+
+    return y_next;
 }
 
 void Model3_7::reset() {
-    y_curr = 0.0;
+    setY(0.0);
 }
